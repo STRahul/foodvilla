@@ -5,8 +5,8 @@ import { IMG_URL } from "../constant";
 const CartDetails = ({name,category,imageId,totalPrice,quantity,id})=>{
     // const dispatch = useDispatch();
     return(
-        <div className="w-60 h-[330px] shadow-lg m-5 p-3 rounded-xl">
-          <img className="h-[45%] w-60 rounded-lg p-1" src={IMG_URL+imageId} alt="res-image" />
+        <div className="h-[330px] shadow-lg m-5 p-3 rounded-xl">
+          <img className="w-full h-[45%] rounded-lg p-1" src={IMG_URL+imageId} alt="res-image" />
           <h1 className="text-xl font-bold">{name}</h1>
           <h2 className="font-semibold text-xl">{category}</h2>
           <p>Rs. {totalPrice/100}</p>
