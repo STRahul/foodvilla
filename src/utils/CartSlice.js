@@ -12,11 +12,10 @@ const cartSlice = createSlice({
              state.cartItems = [];
          }
          const existingIndex = state.cartItems.findIndex(item=>item.id===action.payload.id);
-         const existingData = state.cartItems.filter(item=>item.id===action.payload.id)
-
-         if(existingData.length > 0){
-            existingData[existingIndex].totalPrice += action.payload?.price | action.payload?.defaultPrice;
-            existingData[existingIndex].quantity += action.payload.quantity;
+         const existingData = state.cartItems[existingIndex];
+         if(existingData){
+            existingData.totalPrice += action.payload?.price | action.payload?.defaultPrice;
+            existingData.quantity += action.payload.quantity;
          }
          else{
             const totalPrice = action.payload.price | action.payload.defaultPrice;
@@ -25,20 +24,15 @@ const cartSlice = createSlice({
         },
         removeItem:(state,action)=>{
             const existingIndex = state.cartItems.findIndex(item=>item.id===action.payload.id);
-            const existingData = state.cartItems.filter(item=>item.id===action.payload.id);
-            let quantity;
-            state.cartItems.map(item=>{
-                if(item.id === action.payload.id){
-                    quantity = item.quantity
-                }
-            })
+            const existingData = state.cartItems[existingIndex];
+            let quantity = existingData.quantity;
 
             if(quantity === 1){
                 state.cartItems = state.cartItems.filter(item=>item.id !== action.payload.id)
             }
             else {
-                existingData[existingIndex].quantity -= 1;
-                existingData[existingIndex].totalPrice -= existingData[existingIndex].price
+                existingData.quantity -= 1;
+                existingData.totalPrice -= existingData.price | existingData.defaultPrice;
             }
         },
         clearCart:(state)=>{

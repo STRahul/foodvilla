@@ -70,9 +70,3 @@ const Body = () => {
 };
 
 export default Body;
-
-export async function loader() {
-  const data = await fetch(FETCH_RESTAURANT_URL);
-  const jsonData = await data.json();
-  return jsonData;
-};

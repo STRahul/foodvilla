@@ -1,4 +1,3 @@
-import React from "react";
 import { Provider } from "react-redux";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
@@ -10,7 +9,6 @@ import Contact from "./components/Contact";
 import RestaurantMenu from "./components/RestaurantMenu";
 import store from "./utils/Store";
 import Cart from "./components/Cart";
-import { loader as CardLoader } from "./components/Body";
 
 const AppLayout = () => {
   return (
@@ -32,7 +30,6 @@ const appRouter = createBrowserRouter([
       {
         path: "",
         element: <Body />,
-        loader: CardLoader,
       },
       {
         path: "contact",
