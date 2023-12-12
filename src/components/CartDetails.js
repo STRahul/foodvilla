@@ -6,13 +6,13 @@ const CartDetails = (props) => {
   const { name, category, imageId, totalPrice, quantity, id,restId,price, defaultPrice } = props;
   const dispatch = useDispatch();
   return (
-    <div className="h-[330px] shadow-lg m-5 p-3 rounded-xl">
+    <div className="m-5 p-3">
       <img
-        className="w-full h-[45%] rounded-lg p-1"
+        className="w-full h-40 rounded-lg shadow-xl"
         src={IMG_URL + imageId}
         alt="res-image"
       />
-      <h1 className="text-xl font-bold">{name}</h1>
+      <h1 className="text-xl font-bold mt-4">{name}</h1>
       <h2 className="font-semibold text-xl">{category}</h2>
       <p>Rs. {totalPrice / 100} ({price/100 | defaultPrice/100 }/item)</p>
       <div className="flex justify-between">
