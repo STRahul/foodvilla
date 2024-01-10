@@ -32,7 +32,7 @@ const RestaurantMenu = () => {
   }
 
   return (
-    <div className="mt-5 ">
+    <div className="mt-5 overflow-x-hidden [&::-webkit-scrollbar]:hidden max-w-[1280px] mx-auto">
       <div className="flex justify-around p-2">
         <div>
           <h1 className="font-bold text-xl">

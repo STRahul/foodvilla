@@ -4,9 +4,9 @@ const Search = ({onFilterData}) => {
     const [searchText, setSearcgText] = useState("");
 
   return (
-    <div className="flex p-3 mt-2 bg-white shadow-md">
+    <div className="p-3 mt-2 inline-block">
         <input
-          className=" ml-3 p-1 px-2 border border-sky-200 focus:border-green-600 focus:bg-blue-100 outline-none"
+          className="p-1 px-2 border border-sky-200 focus:border-green-600 focus:bg-blue-100 outline-none"
           type="text"
           placeholder="Search"
           value={searchText}

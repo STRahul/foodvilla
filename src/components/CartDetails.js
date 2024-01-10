@@ -6,9 +6,9 @@ const CartDetails = (props) => {
   const { name, category, imageId, totalPrice, quantity, id,restId,price, defaultPrice } = props;
   const dispatch = useDispatch();
   return (
-    <div className="m-5 p-3">
+    <div className="m-5 p-3 group">
       <img
-        className="w-full h-40 rounded-lg shadow-xl"
+        className="w-full h-40 rounded-lg shadow-xl group-hover:rounded-none group-hover:scale-105 duration-150"
         src={IMG_URL + imageId}
         alt="res-image"
       />
