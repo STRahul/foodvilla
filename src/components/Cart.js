@@ -26,7 +26,7 @@ const Cart = () => {
       <div className="overflow-x-hidden max-w-[1280px] mx-auto [&::-webkit-scrollbar]:hidden">
         <div className="grid gap-4 grid-cols-[repeat(auto-fill,minmax(280px,1fr))] xl:max-w-[1280px]">
           {cartItems?.map((item) => (
-           <a> <CartDetails {...item} key={item.id} /></a>
+           <a> <CartDetails {...item} key={item.id+item.quantity} /></a>
           ))}
         </div>
       </div>

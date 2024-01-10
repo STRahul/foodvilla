@@ -20,7 +20,7 @@ const Shimmer = () => {
                 fill="currentFill"
               />
             </svg>
-            <span class="sr-only">Loading...</span>
+            <span className="sr-only">Loading...</span>
           </div>
           <p className="text-white text-3xl font-semibold hidden md:block">Looking for great food near you ...</p>
         </div>
