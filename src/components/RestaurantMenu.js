@@ -31,6 +31,10 @@ const RestaurantMenu = () => {
       return <p className="m-2 p-2 font-bold text-xl text-center">Loading.....</p>
   }
 
+  if(!menu){
+    return <p className="text-center m-4 p-4 text-3xl font-bold">{restaurant[0]?.card?.card?.info?.name} have not menu at this time.</p>
+  }
+
   return (
     <div className="mt-5 overflow-x-hidden [&::-webkit-scrollbar]:hidden max-w-[1280px] mx-auto">
       <div className="flex justify-around p-2">

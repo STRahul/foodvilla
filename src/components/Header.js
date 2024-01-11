@@ -1,5 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
 
 const Title = () => {
   return (
@@ -35,9 +36,18 @@ const Title = () => {
 
 const Header = () => {
   const cartItems = useSelector((store) => store?.cart?.cartItems);
+  const [cartIsHighlighted, setCartIsHighlighted] = useState(false);
   const totalQuantity = cartItems.length > 0?cartItems?.reduce((acc,item)=>{
       return acc+item.quantity;
   },0):0;
+  
+  useEffect(()=>{
+    setCartIsHighlighted(true);
+    const timer = setTimeout(() => {
+      setCartIsHighlighted(false);
+    }, 300);
+    return ()=> clearTimeout(timer);
+  },[cartItems])
   return (
     <div className="flex justify-between p-6 m-0 bg-white shadow-xl">
       <Title />
@@ -74,14 +84,15 @@ const Header = () => {
               Contact
             </NavLink>
           </li>
-          <li>
+          <li className={cartIsHighlighted?'scale-110 duration-300 ease-out':''}>
             <NavLink
               to="/cart"
               className={({ isActive }) =>
                 isActive ? "text-[#ffa700]" : "text-black"
               }
             >
-              Cart - {totalQuantity} items
+              <span className="bg-[#60b246] px-2 text-white text-[medium] rounded-t-md mr-2">{totalQuantity}</span>
+              <span>Cart</span>
             </NavLink>
           </li>
         </ul>
