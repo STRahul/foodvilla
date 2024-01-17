@@ -17,6 +17,7 @@ const Body = () => {
   const [filterRestaurants, setFilterRestaurants] = useState([]);
   const [cards, setCards] = useState();
   const [showDropdown, setShowDropdown] = useState(false);
+  const [applyVeg, setApplyVeg] = useState(false);
   useEffect(() => {
     getRestaurantData();
   }, []);
@@ -33,7 +34,6 @@ const Body = () => {
       jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
     );
-
   }
 
   const filterData = (searchText) => {
@@ -44,17 +44,26 @@ const Body = () => {
   };
 
   const sortRestaurants = (searchBy) => {
-    const data = filterRestaurants.toSorted(
-      (a, b) => {
-        setShowDropdown(false);
-        if(searchBy==='rating')
-         return parseFloat(b.info.avgRating) - parseFloat(a.info.avgRating)
-        else
-        return parseFloat(a.info.sla.deliveryTime) - parseFloat(b.info.sla.deliveryTime)
-      }
-    );
+    const data = filterRestaurants.toSorted((a, b) => {
+      setShowDropdown(false);
+      if (searchBy === "rating")
+        return parseFloat(b.info.avgRating) - parseFloat(a.info.avgRating);
+      else
+        return (
+          parseFloat(a.info.sla.deliveryTime) -
+          parseFloat(b.info.sla.deliveryTime)
+        );
+    });
     setFilterRestaurants(data);
   };
+
+  function filterVegRestaurant() {
+    const data = !applyVeg
+      ? filterRestaurants.filter((res) => res?.info?.veg)
+      : restaurants;
+    setFilterRestaurants(data);
+    setApplyVeg(!applyVeg);
+  }
 
   if (restaurants?.length === 0) {
     return <Shimmer />;
@@ -90,8 +99,19 @@ const Body = () => {
           >
             Sort By
           </button>
-          <Dropdown showDropdown={showDropdown} sortRestaurants={sortRestaurants} />
-        </div> 
+          <Dropdown
+            showDropdown={showDropdown}
+            sortRestaurants={sortRestaurants}
+          />
+        </div>
+        <button
+          className={`border-2 border-gray-400 text-gray-700 font-medium rounded-full text-lg px-5 py-1 text-center inline-flex items-center mx-3 ${
+            applyVeg ? "bg-gray-200" : ""
+          }`}
+          onClick={filterVegRestaurant}
+        >
+          Pure Veg {applyVeg && "X"}
+        </button>
 
         {cards && (
           <h1 className="font-bold text-xl ml-3 p-2">
