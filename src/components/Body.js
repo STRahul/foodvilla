@@ -9,8 +9,7 @@ import Dropdown from "./Dropdown";
 
 const image_cdn =
   "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/";
-const discount_image_cdn =
-  "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_850,h_504/";
+
 
 const Body = () => {
   const [restaurants, setRestaurants] = useState([]);
@@ -27,11 +26,11 @@ const Body = () => {
     const jsonData = await data.json();
     setCards(jsonData?.data?.cards);
     setRestaurants(
-      jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+      jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
     );
     setFilterRestaurants(
-      jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
+      jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
     );
   }
@@ -72,19 +71,12 @@ const Body = () => {
     <>
       <div className="overflow-x-hidden max-w-[1280px] mx-auto [&::-webkit-scrollbar]:hidden">
         {cards && (
-          <>
-            <Carousel
-              label="Best offers for you"
-              image_cdn={discount_image_cdn}
-              data={cards[1]?.card?.card?.imageGridCards}
-            />
             <Carousel
               customStyle={true}
               image_cdn={image_cdn}
               label={cards[0]?.card?.card?.header?.title}
               data={cards[0]?.card?.card?.imageGridCards}
             />
-          </>
         )}
 
         <hr className="border border-[rgb(240,240,245)] my-3 mx-2" />
