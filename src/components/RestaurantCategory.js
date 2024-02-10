@@ -15,6 +15,7 @@ const RestaurantCategory = ({ data ,showItems,show,restId}) => {
               {...item?.card?.info}
               key={item?.card?.info?.id}
               restId={restId}
+              cart={false}
             />
           )
         )} 
