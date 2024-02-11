@@ -1,6 +1,7 @@
 import { useSelector, useDispatch } from "react-redux";
 import { clearCart } from "../utils/CartSlice";
 import MenuItem from "./MenuItem";
+import { Link } from "react-router-dom";
 const Cart = () => {
   const cartItems = useSelector((store) => store.cart.cartItems);
   const dispatch = useDispatch();
@@ -18,7 +19,7 @@ const Cart = () => {
         <p className="text-xl p-2">
           You can go to home page to view more restaurants
         </p>
-        {/* <Link className="bg-[#ffa700] p-3 text-white text-xl rounded-md" to="/">See Restaurant near you</Link> */}
+        <Link className="bg-[#ffa700] p-3 text-white text-xl rounded-md" to="/">See Restaurant near you</Link>
       </div>
     );
   }
