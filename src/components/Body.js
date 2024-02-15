@@ -1,15 +1,10 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { FETCH_RESTAURANT_URL } from "../constant";
-import RestaurantCard from "./RestaurantCard";
 import Search from "./search";
 import Shimmer from "./Shimmer";
 import Carousel from "./Carousel";
 import Dropdown from "./Dropdown";
-
-const image_cdn =
-  "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/";
-
+import RestaurantList from "./RestaurantList";
 
 const Body = () => {
   const [restaurants, setRestaurants] = useState([]);
@@ -26,11 +21,11 @@ const Body = () => {
     const jsonData = await data.json();
     setCards(jsonData?.data?.cards);
     setRestaurants(
-      jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+      jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
     );
     setFilterRestaurants(
-      jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+      jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
     );
   }
@@ -72,14 +67,17 @@ const Body = () => {
       <div className="overflow-x-hidden max-w-[1280px] mx-auto [&::-webkit-scrollbar]:hidden">
         {cards && (
             <Carousel
-              customStyle={true}
-              image_cdn={image_cdn}
               label={cards[0]?.card?.card?.header?.title}
               data={cards[0]?.card?.card?.imageGridCards}
             />
         )}
 
         <hr className="border border-[rgb(240,240,245)] my-3 mx-2" />
+        {cards && (
+          <h1 className="font-bold text-2xl ml-3 p-2">
+            {cards[2]?.card?.card?.title}
+          </h1>
+        )}
         <Search onFilterData={filterData} />
         <div className="relative inline-block mx-5">
           <button
@@ -104,19 +102,7 @@ const Body = () => {
         >
           Pure Veg {applyVeg && "X"}
         </button>
-
-        {cards && (
-          <h1 className="font-bold text-xl ml-3 p-2">
-            {cards[2]?.card?.card?.title}
-          </h1>
-        )}
-        <div className="grid gap-4 grid-cols-[repeat(auto-fill,minmax(280px,1fr))]">
-          {filterRestaurants?.map((item) => (
-            <Link to={"restaurant/" + item.info.id} key={item.info.id}>
-              <RestaurantCard {...item.info} />
-            </Link>
-          ))}
-        </div>
+        <RestaurantList filterRestaurants={filterRestaurants} />
       </div>
     </>
   );

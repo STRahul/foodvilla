@@ -1,4 +1,6 @@
-const Carousel = ({ data, label, customStyle = false, image_cdn }) => {
+const image_cdn =
+  "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/";
+  const Carousel = ({ data, label }) => {
   return (
     data && <div className="p-2 mt-3 ml-3">
       <h1 className="font-bold text-2xl">{label}</h1>
@@ -6,7 +8,7 @@ const Carousel = ({ data, label, customStyle = false, image_cdn }) => {
         {data?.info?.map((item) => (
           <img
             key={item.imageId}
-            className={customStyle ? "w-32" : "h-[20rem] p-2"}
+            className="w-32"
             src={image_cdn + item.imageId}
           />
         ))}
