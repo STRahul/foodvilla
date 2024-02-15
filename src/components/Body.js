@@ -5,6 +5,7 @@ import Shimmer from "./Shimmer";
 import Carousel from "./Carousel";
 import Dropdown from "./Dropdown";
 import RestaurantList from "./RestaurantList";
+import RestaurantCard from "./RestaurantCard";
 
 const Body = () => {
   const [restaurants, setRestaurants] = useState([]);
@@ -66,13 +67,14 @@ const Body = () => {
     <>
       <div className="overflow-x-hidden max-w-[1280px] mx-auto [&::-webkit-scrollbar]:hidden">
         {cards && (
-            <Carousel
-              label={cards[0]?.card?.card?.header?.title}
-              data={cards[0]?.card?.card?.imageGridCards}
-            />
+          <Carousel
+            label={cards[0]?.card?.card?.header?.title}
+            data={cards[0]?.card?.card?.imageGridCards}
+          />
         )}
 
         <hr className="border border-[rgb(240,240,245)] my-3 mx-2" />
+
         {cards && (
           <h1 className="font-bold text-2xl ml-3 p-2">
             {cards[2]?.card?.card?.title}
@@ -85,8 +87,7 @@ const Body = () => {
             data-dropdown-toggle="dropdown"
             className="border-2 border-gray-400 text-gray-700 font-medium rounded-full text-lg px-5 py-1 text-center inline-flex items-center"
             type="button"
-            onClick={() => setShowDropdown((prevState) => !prevState)}
-          >
+            onClick={() => setShowDropdown((prevState) => !prevState)}>
             Sort By
           </button>
           <Dropdown
@@ -98,8 +99,7 @@ const Body = () => {
           className={`border-2 border-gray-400 text-gray-700 font-medium rounded-full text-lg px-5 py-1 text-center inline-flex items-center mx-3 ${
             applyVeg ? "bg-gray-200" : ""
           }`}
-          onClick={filterVegRestaurant}
-        >
+          onClick={filterVegRestaurant}>
           Pure Veg {applyVeg && "X"}
         </button>
         <RestaurantList filterRestaurants={filterRestaurants} />
