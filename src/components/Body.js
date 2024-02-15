@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import { FETCH_RESTAURANT_URL } from "../constant";
+import { FETCH_RESTAURANT_URL, MOB_REST_API } from "../constant";
 import Search from "./search";
 import Shimmer from "./Shimmer";
 import Carousel from "./Carousel";
 import Dropdown from "./Dropdown";
 import RestaurantList from "./RestaurantList";
-import RestaurantCard from "./RestaurantCard";
+import { useMediaQuery } from "react-responsive";
 
 const Body = () => {
   const [restaurants, setRestaurants] = useState([]);
@@ -13,12 +13,17 @@ const Body = () => {
   const [cards, setCards] = useState();
   const [showDropdown, setShowDropdown] = useState(false);
   const [applyVeg, setApplyVeg] = useState(false);
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   useEffect(() => {
-    getRestaurantData();
+    if (isMobile) {
+      getRestaurantData(MOB_REST_API);
+    } else {
+      getRestaurantData(FETCH_RESTAURANT_URL);
+    }
   }, []);
 
-  async function getRestaurantData() {
-    const data = await fetch(FETCH_RESTAURANT_URL);
+  async function getRestaurantData(url) {
+    const data = await fetch(url);
     const jsonData = await data.json();
     setCards(jsonData?.data?.cards);
     setRestaurants(

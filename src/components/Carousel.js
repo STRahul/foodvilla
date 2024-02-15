@@ -15,8 +15,8 @@ const Carousel = ({ data, label }) => {
   return (
     data && (
       <div className="p-2 mt-3 ml-3">
-        <div className="flex justify-between">
-          <h1 className="font-bold text-2xl">{label}</h1>
+        <div className="flex justify-between items-center">
+          <h1 className="font-bold md:text-2xl">{label}</h1>
           <div className="flex mx-2">
             <IoArrowBackCircle
               className="m-1 cursor-pointer opacity-30 hover:opacity-100 duration-100"

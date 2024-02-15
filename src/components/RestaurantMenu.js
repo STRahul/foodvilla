@@ -3,28 +3,33 @@ import { useParams } from "react-router";
 import MenuItem from "./MenuItem";
 import useRestaurantMenu from "../utils/useRestaurantMenu";
 import RestaurantCategory from "./RestaurantCategory";
+import { useMediaQuery } from "react-responsive";
+import { MENU_API, MOB_MENU_API } from "../constant";
 const RestaurantMenu = () => {
   const { restId } = useParams();
   const [showIndex, setShowIndex] = useState(0);
-  const resInfo = useRestaurantMenu(restId);
+  const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
+
+  const resInfo = useRestaurantMenu(restId, isMobile ? MOB_MENU_API : MENU_API);
   if (!resInfo)
     return (
       <p className="m-2 p-2 font-bold text-xl text-center">Loading.....</p>
     );
 
   const { name, areaName, cuisines, avgRating, sla, totalRatingsString } =
-    resInfo?.cards[0]?.card?.card?.info;
+    resInfo?.cards[isMobile ? 2 : 0]?.card?.card?.info;
 
-  const categoryForDesktop =
-    resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
-  const categoryForMobile =
-    resInfo?.cards[3]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
-
-  const categories = (categoryForDesktop || categoryForMobile)?.filter(
-    (category) =>
-      category?.card?.card?.["@type"] ===
-      "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
-  );
+    const categories = isMobile
+    ? resInfo?.cards[5]?.groupedCard?.cardGroupMap?.REGULAR.cards.filter(
+        (c) =>
+          c.card?.card?.["@type"] ===
+          "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+      )
+    : resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR.cards.filter(
+        (c) =>
+          c.card?.card?.["@type"] ===
+          "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+      );
   if (!categories.length) {
     return (
       <p className="text-center m-4 p-4 text-3xl font-bold">
