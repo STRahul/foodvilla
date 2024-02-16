@@ -37,13 +37,13 @@ const Cart = () => {
 
           <>
             {cartItems.map((item) => (
-              <MenuItem {...item} cart={true} />
+              <MenuItem key={item?.card?.info?.id} {...item} cart={true} />
             ))}
           </>
         </div>
         <div className="w-[20rem] h-72 rounded-md shadow-md mt-8 p-7 leading-loose mb-9 md:mb-0">
           <h1 className="text-2xl font-bold mb-4">Order Summary</h1>
-          <table className="w-52 p-1 text-xl leading-loose">
+          <table className="w-60 p-1 text-xl leading-loose">
             <tbody>
               <tr>
                 <td>Sub-Total</td>
