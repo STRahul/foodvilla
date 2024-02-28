@@ -49,7 +49,7 @@ const Header = () => {
     return ()=> clearTimeout(timer);
   },[cartItems])
   return (
-    <div className="flex justify-between p-6 m-0 bg-white shadow-xl">
+    <div className="flex justify-between p-4 m-0 bg-white shadow-xl">
       <Title />
       <div>
         <ul className="flex justify-between gap-2 md:gap-4 p-2 md:text-xl">

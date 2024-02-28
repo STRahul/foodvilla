@@ -24,8 +24,9 @@ const Cart = () => {
     );
   }
   return (
-      <div className="flex flex-col md:flex-row gap-4 overflow-y-scroll justify-center items-center md:items-start [&::-webkit-scrollbar]:hidden">
-        <div className="md:w-[50%] p-4 mt-[22rem] md:mt-2">
+    <div className="overflow-x-hidden [&::-webkit-scrollbar]:hidden">
+      <div className="flex flex-col md:flex-row gap-4 justify-center items-center md:items-start mb-16">
+        <div className="md:w-[50%] p-4">
           <div className="flex items-center justify-around">
             <h2 className="text-2xl font-bold">Order Details</h2>
             <button
@@ -62,6 +63,7 @@ const Cart = () => {
           <button className="w-full bg-[#e67e22] mt-3 rounded-md py-3 text-xl text-white">Checkout</button>
         </div>
       </div>
+    </div>
   );
 };
 

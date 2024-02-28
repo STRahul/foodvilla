@@ -70,7 +70,7 @@ const Body = () => {
   }
   return (
     <>
-      <div className="overflow-x-hidden max-w-[1280px] mx-auto [&::-webkit-scrollbar]:hidden">
+      <div className="overflow-x-hidden max-w-[1280px] mx-auto mb-20 [&::-webkit-scrollbar]:hidden">
         {cards && (
           <Carousel
             label={cards[0]?.card?.card?.header?.title}
